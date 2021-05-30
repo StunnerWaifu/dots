@@ -1,0 +1,68 @@
+#! /bin/sh
+
+# Launch sxhkd
+SXHKD_SHELL=bash sxhkd &
+
+# Launch polybar
+.config/polybar/launch.sh
+
+# Launch notification server
+killall dunst && dunst &
+
+# set wallpaper
+nitrogen --restore &
+
+# Start windows compositor
+picom &
+
+# Autohide the cursor when inactive
+unclutter --ignore-scrolling &
+
+# Speed up keyboard input
+xset r rate 300 50 &
+
+# Set the cursor
+xsetroot -cursor_name left_ptr 
+
+# Desktops
+bspc monitor -d 1 2 3 4 5 6 
+
+# Border and Gap
+bspc config border_width	1
+bspc config window_gap		2
+
+# Configuration
+bspc config split_ratio          0.5
+
+# Mouse
+bspc config click_to_focus	 	button1
+bspc config focus_follows_pointer 	true
+
+# Monocle mode settings
+bspc config borderless_monocle   false
+bspc config gapless_monocle      true
+bspc config paddingless_monocle	 true
+
+# Colors tomorrow
+# bspc config normal_border_color	"#c5c8c6"
+# bspc config focused_border_color	"#81a2be"
+# bspc config presel_feedback_color	"#81a2be"
+
+# Colors Nord
+bspc config normal_border_color		"#eceff4"
+bspc config focused_border_color	"#88c0d0"
+bspc config presel_feedback_color	"#88c0d0"
+
+# Colors Ocean
+# bspc config normal_border_color	"#c0c5ce"
+# bspc config focused_border_color	"#81a2be"
+# bspc config presel_feedback_color	"#81a2be"
+
+# Rules
+bspc rule -a Lxappearance state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Org.gnome.Nautilus state=floating
+bspc rule -a File-roller state=floating
+bspc rule -a Nitrogen state=floating
+bspc rule -a zoom state=floating
+bspc rule -a spotify free state=floating
